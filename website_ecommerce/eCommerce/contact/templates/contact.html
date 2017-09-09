@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+{% if confirm_message %}
+{{confirm_message}}
+{% endif %}
+{% if form and not confirm_message%}
+<form method="post" action="">
+    {% csrf_token %}
+{% for fields in form %}
+<div>
+    <div>
+        <span>{{fields.errors}}</span>
+    </div>
+    <label>{{fields.label_tag}}</label>
+    <div>{{fields}}</div>
+</div>
+{% endfor %}
+<input type = 'submit' name = 'submit' />
+{% endif %}
+</form>
+{% endblock %}
